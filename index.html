@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday 🎂</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+overflow:hidden;
+background:linear-gradient(-45deg,#ff4e50,#fc913a,#f9d423,#ff6ec7);
+background-size:400% 400%;
+animation:bg 10s ease infinite;
+}
+
+@keyframes bg{
+0%{background-position:0% 50%;}
+50%{background-position:100% 50%;}
+100%{background-position:0% 50%;}
+}
+
+.container{
+width:92%;
+max-width:420px;
+padding:25px;
+border-radius:25px;
+background:rgba(255,255,255,.18);
+backdrop-filter:blur(12px);
+text-align:center;
+box-shadow:0 10px 30px rgba(0,0,0,.25);
+color:white;
+position:relative;
+z-index:10;
+}
+
+h1{
+font-size:2.2rem;
+animation:pop 1s infinite alternate;
+}
+
+@keyframes pop{
+from{transform:scale(1);}
+to{transform:scale(1.08);}
+}
+
+.subtitle{
+margin-top:10px;
+font-size:1rem;
+line-height:1.6;
+}
+
+.cake{
+font-size:70px;
+margin:20px 0;
+animation:bounce 1s infinite;
+}
+
+@keyframes bounce{
+50%{
+transform:translateY(-15px);
+}
+}
+
+button{
+margin-top:15px;
+padding:12px 25px;
+border:none;
+border-radius:50px;
+background:#fff;
+color:#ff4081;
+font-size:16px;
+font-weight:bold;
+cursor:pointer;
+transition:.3s;
+}
+
+button:hover{
+transform:scale(1.08);
+}
+
+.gift{
+font-size:70px;
+cursor:pointer;
+margin-top:15px;
+transition:.5s;
+}
+
+.message{
+display:none;
+margin-top:20px;
+font-size:18px;
+font-weight:bold;
+animation:fade 1s;
+}
+
+@keyframes fade{
+from{
+opacity:0;
+transform:translateY(20px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+
+.balloon{
+position:absolute;
+bottom:-120px;
+font-size:45px;
+animation:float 10s linear infinite;
+opacity:.85;
+}
+
+@keyframes float{
+0%{
+transform:translateY(0);
+}
+100%{
+transform:translateY(-130vh);
+}
+}
+
+.balloon:nth-child(1){
+left:5%;
+animation-duration:8s;
+}
+
+.balloon:nth-child(2){
+left:25%;
+animation-duration:10s;
+}
+
+.balloon:nth-child(3){
+left:45%;
+animation-duration:9s;
+}
+
+.balloon:nth-child(4){
+left:65%;
+animation-duration:11s;
+}
+
+.balloon:nth-child(5){
+left:85%;
+animation-duration:8.5s;
+}
+
+.footer{
+margin-top:18px;
+font-size:14px;
+opacity:.9;
+}
+
+@media(max-width:500px){
+h1{
+font-size:1.8rem;
+}
+.cake{
+font-size:60px;
+}
+}
+</style>
+
+</head>
+<body>
+
+<div class="balloon">🎈</div>
+<div class="balloon">🎈</div>
+<div class="balloon">🎈</div>
+<div class="balloon">🎈</div>
+<div class="balloon">🎈</div>
+
+<div class="container">
+
+<h1>🎉 Happy Birthday! Aamina 🎉</h1>
+
+<div class="cake">🎂</div>
+
+<p class="subtitle">
+Wishing you a day filled with laughter,
+love, happiness, and unforgettable memories.
+May all your dreams come true!  💖
+</p>
+
+<div class="gift" onclick="openGift()">
+🎁
+<p class="subtitle"> 
+    click me
+    </p> 
+
+
+</div>
+
+<div class="message" id="msg">
+🌟 Surprise! 🌟<br><br>
+You are amazing, special, and loved.<br>
+Have the happiest birthday ever! Meena ❤️🎂
+</div>
+
+<button onclick="celebrate()">
+🎊 Celebrate
+</button>
+
+<br>
+
+</div>
+
+<script>
+
+function celebrate(){
+
+confetti({
+particleCount:300,
+spread:180,
+origin:{y:0.6}
+});
+
+let duration=5000;
+
+let end=Date.now()+duration;
+
+(function frame(){
+
+confetti({
+particleCount:7,
+angle:60,
+spread:55,
+origin:{x:0}
+});
+
+confetti({
+particleCount:7,
+angle:120,
+spread:55,
+origin:{x:1}
+});
+
+if(Date.now()<end){
+requestAnimationFrame(frame);
+}
+
+}());
+
+}
+
+function openGift(){
+
+document.getElementById("msg").style.display="block";
+
+document.querySelector(".gift").innerHTML="💝";
+
+celebrate();
+
+}
+
+
+
+
+window.onload=()=>{
+
+celebrate();
+
+setInterval(celebrate,8000);
+
+}
+
+</script>
+
+</body>
+</html>
